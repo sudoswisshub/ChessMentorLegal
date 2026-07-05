@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - ChessMentor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #6366f1;
+            --accent-secondary: #a855f7;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+                --card-bg: rgba(255, 255, 255, 0.85);
+                --card-border: rgba(0, 0, 0, 0.06);
+                --text-primary: #0f172a;
+                --text-secondary: #475569;
+                --accent-primary: #4f46e5;
+                --accent-secondary: #9333ea;
+                --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+                --shadow-color: rgba(0, 0, 0, 0.05);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+            background: var(--accent-gradient);
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px var(--shadow-color);
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .last-updated {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 500;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 1rem;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        section:last-of-type {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 1.5rem;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        ul {
+            list-style-type: none;
+            margin-bottom: 1.5rem;
+            padding-left: 0.5rem;
+        }
+
+        li {
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+        li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Styling */
+        details {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            margin-bottom: 1rem;
+            padding: 1.25rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @media (prefers-color-scheme: light) {
+            details {
+                background: rgba(0, 0, 0, 0.02);
+            }
+        }
+
+        details[open] {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--accent-primary);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.08);
+        }
+
+        @media (prefers-color-scheme: light) {
+            details[open] {
+                background: rgba(0, 0, 0, 0.01);
+                border-color: var(--accent-primary);
+            }
+        }
+
+        summary {
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-primary);
+            user-select: none;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 1.2rem;
+            color: var(--accent-primary);
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            content: '−';
+            transform: rotate(180deg);
+        }
+
+        details p {
+            margin-top: 0.75rem;
+            margin-bottom: 0;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--accent-gradient);
+            color: white;
+            text-decoration: none;
+            padding: 0.85rem 1.75rem;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 1rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.45);
+        }
+
+        .contact-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        footer.page-footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1.5rem 0.5rem;
+            }
+            .card {
+                padding: 1.5rem;
+                border-radius: 18px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .nav-links {
+                gap: 0.75rem;
+            }
+            .nav-links a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-icon">♞</div>
+            <h1>ChessMentor</h1>
+            <p class="subtitle">Master the game, step by step</p>
+        </header>
+
+        <div class="nav-links">
+            <a href="terms.html">Terms & Conditions</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="support.html" class="active">Support</a>
+        </div>
+
+        <main class="card">
+            <div class="last-updated">Last Updated: July 5, 2026</div>
+
+            <section>
+                <h2>How Can We Help?</h2>
+                <p>Welcome to ChessMentor Support. Since ChessMentor is designed to run entirely offline on your device, we don't store your details on any external servers. This guide is built to help you troubleshoot, learn how to manage your data, and answer common questions.</p>
+            </section>
+
+            <section>
+                <h2>Frequently Asked Questions</h2>
+                
+                <details>
+                    <summary>How do I reset my progress?</summary>
+                    <p>If you'd like to clear your stats, ratings, puzzle-solving history, or lesson streak, open ChessMentor, navigate to the settings page, and scroll down to the bottom. Tap on "Reset all progress" and confirm. This action will permanently erase all local storage progress and cannot be undone.</p>
+                </details>
+
+                <details>
+                    <summary>Does ChessMentor require an active internet connection?</summary>
+                    <p>No. ChessMentor is designed to run 100% offline. All chess engines, puzzles, board themes, and educational content are packaged directly inside the app, so you can learn and practice chess anywhere—even in airplane mode. You only need internet access to download app updates or send support emails.</p>
+                </details>
+
+                <details>
+                    <summary>How is my puzzle rating calculated?</summary>
+                    <p>ChessMentor uses a Glicko/Elo rating calculation system. When you solve a puzzle correctly, your puzzle rating increases based on the puzzle's difficulty. If you get it wrong, your rating will decrease. We do not track or send these ratings to any external database; they are saved securely on your device.</p>
+                </details>
+
+                <details>
+                    <summary>Are my settings and streak synced across devices?</summary>
+                    <p>Currently, because ChessMentor does not require account creation or internet connection, all your Streaks, board options, and puzzle progress are kept locally on the device you are using. They will not sync to another iPhone or iPad.</p>
+                </details>
+
+                <details>
+                    <summary>Is ChessMentor safe for children?</summary>
+                    <p>Absolutely. ChessMentor contains no ads, no trackers, no sign-ups, and no user-generated content chat systems. It is entirely safe for chess learners of all ages, including children under 13.</p>
+                </details>
+            </section>
+
+            <section>
+                <h2>Troubleshooting</h2>
+                <p>If the app is freezing or not responding properly, please try the following standard iOS troubleshooting steps:</p>
+                <ul>
+                    <li>Swipe up from the bottom of your screen to open the App Switcher, swipe up on ChessMentor to close it, and then reopen the app.</li>
+                    <li>Ensure you have the latest version of ChessMentor installed by visiting the App Store and tapping your profile icon to check for pending updates.</li>
+                    <li>Restart your iOS device.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Contact Support</h2>
+                <p>If your issue is not resolved by the FAQs above, or if you have any feature suggestions, bugs to report, or general feedback, we would love to hear from you. Please send us an email at:</p>
+                <a href="mailto:alice.turcanu91@gmail.com" class="contact-btn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    alice.turcanu91@gmail.com
+                </a>
+            </section>
+        </main>
+
+        <footer class="page-footer">
+            <p>&copy; 2026 ChessMentor. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
